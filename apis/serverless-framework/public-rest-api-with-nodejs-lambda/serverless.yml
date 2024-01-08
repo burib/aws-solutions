@@ -1,0 +1,62 @@
+service: public-rest-api-with-nodejs-lambda
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: dev
+  logRetentionInDays: 1
+  memorySize: 128
+  logs:
+    restApi:
+      format: '{
+        "_requestTime": "$context.requestTime",
+        "requestId": "$context.requestId",
+        "integrationRequestId": "$context.integration.requestId",
+        "user_id": "$context.authorizer.claims.sub",
+        "user_email": "$context.authorizer.claims.email",
+        "resource_id": "$context.resourceId",
+        "protocol": "$context.protocol",
+        "http_method": "$context.httpMethod",
+        "source_ip": "$context.identity.sourceIp",
+        "user-agent": "$context.identity.userAgent",
+        "resourcePath": "$context.resourcePath",
+        "responseStatus": "$context.status",
+        "totalLatency": "$context.responseLatency",
+        "integrationLatency": "$context.integrationLatency",
+        "authorizerLatency": "$context.authorizer.latency",
+        "authorizerIntegrationLatency": "$context.authorizer.integrationLatency"
+      }'
+      level: INFO
+      accessLogging: true
+      executionLogging: true
+      fullExecutionData: true
+  tracing:
+    apiGateway: true
+  apiGateway:
+    metrics: true
+
+functions:
+  helloWorld:
+    handler: hello.handler
+    package:
+      include:
+        - hello.js
+    events:
+      - http:
+          path: /hello
+          method: get
+          cors: true
+
+resources:
+  Outputs:
+    helloWorldEndpoint:
+      Description: "URL of the hello world API endpoint"
+      Value: !Join
+        - ''
+        - - 'https://'
+          - !Ref ApiGatewayRestApi
+          - '.execute-api.'
+          - !Ref AWS::Region
+          - '.amazonaws.com/'
+          - "${self:provider.stage}"
+          - '/hello'

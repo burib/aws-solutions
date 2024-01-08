@@ -1,0 +1,4 @@
+.idea
+.vscode
+.serverless
+node_modules
