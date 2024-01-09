@@ -1,4 +1,4 @@
 # apis
 
 # Table of Contents
-1. [APIs with serverless-framework](./serverless-framework/README.md)
+1. [Public REST API with nodejs lambda](./public-rest-api-with-nodejs-lambda/README.md)
