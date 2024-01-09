@@ -1,13 +1,13 @@
 {
-  "name": "public-rest-api-with-nodejs-lambda",
+  "name": "public-rest-api-with-nodejs-lambda-using-serverless-framework",
   "version": "1.0.0",
   "description": "",
   "main": "npm install serverless && npx serverless deploy && npm test",
   "scripts": {
     "start": "npm install serverless && npx serverless deploy",
     "deploy": "npx serverless deploy",
-    "test": "curl -v $(aws cloudformation --region 'us-east-1' describe-stacks --stack-name public-rest-api-with-nodejs-lambda-dev --query 'Stacks[0].Outputs[?OutputKey==`helloWorldEndpoint`].OutputValue' --output text) | jq '.'",
-    "endpoint": "aws cloudformation --region 'us-east-1' describe-stacks --stack-name public-rest-api-with-nodejs-lambda-dev --query 'Stacks[0].Outputs[?OutputKey==`helloWorldEndpoint`].OutputValue' --output text",
+    "test": "curl -v $(aws cloudformation --region 'us-east-1' describe-stacks --stack-name public-rest-api-with-nodejs-lambda-using-serverless-framework-dev --query 'Stacks[0].Outputs[?OutputKey==`helloWorldEndpoint`].OutputValue' --output text) | jq '.'",
+    "endpoint": "aws cloudformation --region 'us-east-1' describe-stacks --stack-name public-rest-api-with-nodejs-lambda--using-serverless-framework-dev --query 'Stacks[0].Outputs[?OutputKey==`helloWorldEndpoint`].OutputValue' --output text",
     "destroy": "npx serverless remove"
   },
   "keywords": [],

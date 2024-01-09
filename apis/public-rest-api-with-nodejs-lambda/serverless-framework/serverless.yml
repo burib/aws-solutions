@@ -1,4 +1,4 @@
-service: public-rest-api-with-nodejs-lambda
+service: public-rest-api-with-nodejs-lambda-using-serverless-framework
 
 provider:
   name: aws

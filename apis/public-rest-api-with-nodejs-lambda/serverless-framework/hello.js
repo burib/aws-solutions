@@ -10,7 +10,7 @@ module.exports.handler = function (event, context, callback) {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'OPTIONS,GET',
         },
-        body: JSON.stringify({ message: 'Hello public-rest-api-with-nodejs-lambda! ISO 8601: ' + new Date().toISOString() }),
+        body: JSON.stringify({ message: 'Hello public-rest-api-with-nodejs-lambda-using-serverless-framework! ISO 8601: ' + new Date().toISOString() }),
     };
 
     callback(null, response);
